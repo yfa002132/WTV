@@ -1,0 +1,133 @@
+{
+  "version": {
+    "name": "1.0.0",
+    "code": 100,
+    "minAndroid": "8.0",
+    "minMacOS": "11.0",
+    "minWindows": "10"
+  },
+  "groups": [
+    {
+      "id": "mobile",
+      "title": "移动端",
+      "installNote": "电视若提示「应用不兼容此设备」，请优先尝试 armeabi-v7a 或 Universal 通用包。安装前请在系统设置中允许「未知来源」应用。手机端与电视端为独立应用，可同时安装。",
+      "platforms": [
+        {
+          "id": "phone",
+          "title": "手机端",
+          "icon": "📱",
+          "packageName": "com.film.wtv",
+          "description": "适用于 Android 手机与平板。推荐 arm64 版本，覆盖绝大多数现代设备。",
+          "downloads": [
+            {
+              "name": "arm64-v8a（推荐）",
+              "desc": "64 位主流手机",
+              "url": "downloads/WTV1.0.0_phone-arm64-v8a-release.apk",
+              "size": "~61 MB"
+            },
+            {
+              "name": "Universal 通用包",
+              "desc": "含全部 CPU 架构，兼容性最佳",
+              "url": "downloads/WTV1.0.0_phone-universal-release.apk",
+              "size": "~221 MB"
+            }
+          ]
+        },
+        {
+          "id": "tv",
+          "title": "电视端",
+          "icon": "📺",
+          "packageName": "com.film.wtv.tv",
+          "description": "适用于 Android TV、智能电视盒子。电视端与手机端包名不同，需单独安装。",
+          "downloads": [
+            {
+              "name": "armeabi-v7a（推荐）",
+              "desc": "32 位老电视 / 小米 PatchWall 等",
+              "url": "downloads/WTV1.0.0_tv-armeabi-v7a-release.apk",
+              "size": "~54 MB"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "desktop",
+      "title": "桌面端",
+      "installNote": "macOS 首次打开若提示「无法验证开发者」，请在「系统设置 → 隐私与安全性」中允许。Windows 安装时若遇 SmartScreen 拦截，请选择「仍要运行」。Linux AppImage 需赋予可执行权限：chmod +x WTV*.AppImage。",
+      "platforms": [
+        {
+          "id": "mac-arm",
+          "title": "macOS (Apple Silicon)",
+          "icon": "🍎",
+          "meta": "M 系列芯片 · macOS 11+",
+          "description": "适用于 M1 / M2 / M3 / M4 等 Apple Silicon 芯片的 Mac 电脑。",
+          "downloads": [
+            {
+              "name": "arm64 安装包（推荐）",
+              "desc": "Apple Silicon 原生版本",
+              "url": "downloads/WTV1.0.0_mac-arm64.dmg",
+              "size": "—"
+            }
+          ]
+        },
+        {
+          "id": "mac-intel",
+          "title": "macOS (Intel)",
+          "icon": "🍎",
+          "meta": "Intel 芯片 · macOS 11+",
+          "description": "适用于 Intel 处理器的 Mac 电脑。",
+          "downloads": [
+            {
+              "name": "x64 安装包",
+              "desc": "Intel Mac 版本",
+              "url": "downloads/WTV1.0.0_mac-x64.dmg",
+              "size": "—"
+            }
+          ]
+        },
+        {
+          "id": "windows",
+          "title": "Windows",
+          "icon": "🪟",
+          "meta": "Windows 10 / 11 · x64",
+          "description": "适用于 64 位 Windows 10 及以上系统。",
+          "downloads": [
+            {
+              "name": "安装程序（推荐）",
+              "desc": "exe 一键安装",
+              "url": "downloads/WTV1.0.0_windows-x64-setup.exe",
+              "size": "—"
+            },
+            {
+              "name": "便携版",
+              "desc": "免安装 zip 压缩包",
+              "url": "downloads/WTV1.0.0_windows-x64-portable.zip",
+              "size": "—"
+            }
+          ]
+        },
+        {
+          "id": "linux",
+          "title": "Linux",
+          "icon": "🐧",
+          "meta": "x64 · AppImage / deb",
+          "description": "适用于主流 x64 架构 Linux 发行版（Ubuntu、Fedora、Debian 等）。",
+          "downloads": [
+            {
+              "name": "AppImage（推荐）",
+              "desc": "通用格式，免安装",
+              "url": "downloads/WTV1.0.0_linux-x64.AppImage",
+              "size": "—"
+            },
+            {
+              "name": "deb 包",
+              "desc": "Debian / Ubuntu 系",
+              "url": "downloads/WTV1.0.0_linux-x64.deb",
+              "size": "—"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
