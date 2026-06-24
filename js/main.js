@@ -128,7 +128,6 @@
 
   function platformSubtitle(platform, versionName) {
     const ver = `v${versionName}`;
-    if (platform.packageName) return `${platform.packageName} · ${ver}`;
     if (platform.meta) return `${platform.meta} · ${ver}`;
     return ver;
   }
