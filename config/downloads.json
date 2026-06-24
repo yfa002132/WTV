@@ -6,6 +6,18 @@
     "minMacOS": "11.0",
     "minWindows": "10"
   },
+  "baseUrl": "",
+  "files": {
+    "phone-arm64": "downloads/WTV1.0.0_phone-arm64-v8a-release.apk",
+    "phone-universal": "downloads/WTV1.0.0_phone-universal-release.apk",
+    "tv-armeabi": "downloads/WTV1.0.0_tv-armeabi-v7a-release.apk",
+    "mac-arm64": "downloads/WTV1.0.0_mac-arm64.dmg",
+    "mac-x64": "downloads/WTV1.0.0_mac-x64.dmg",
+    "windows-setup": "downloads/WTV1.0.0_windows-x64-setup.exe",
+    "windows-portable": "downloads/WTV1.0.0_windows-x64-portable.zip",
+    "linux-appimage": "downloads/WTV1.0.0_linux-x64.AppImage",
+    "linux-deb": "downloads/WTV1.0.0_linux-x64.deb"
+  },
   "groups": [
     {
       "id": "mobile",
@@ -22,13 +34,13 @@
             {
               "name": "arm64-v8a（推荐）",
               "desc": "64 位主流手机",
-              "url": "downloads/WTV1.0.0_phone-arm64-v8a-release.apk",
+              "file": "phone-arm64",
               "size": "~61 MB"
             },
             {
               "name": "Universal 通用包",
               "desc": "含全部 CPU 架构，兼容性最佳",
-              "url": "downloads/WTV1.0.0_phone-universal-release.apk",
+              "file": "phone-universal",
               "size": "~221 MB"
             }
           ]
@@ -43,7 +55,7 @@
             {
               "name": "armeabi-v7a（推荐）",
               "desc": "32 位老电视 / 小米 PatchWall 等",
-              "url": "downloads/WTV1.0.0_tv-armeabi-v7a-release.apk",
+              "file": "tv-armeabi",
               "size": "~54 MB"
             }
           ]
@@ -65,7 +77,7 @@
             {
               "name": "arm64 安装包（推荐）",
               "desc": "Apple Silicon 原生版本",
-              "url": "downloads/WTV1.0.0_mac-arm64.dmg",
+              "file": "mac-arm64",
               "size": "—"
             }
           ]
@@ -80,7 +92,7 @@
             {
               "name": "x64 安装包",
               "desc": "Intel Mac 版本",
-              "url": "downloads/WTV1.0.0_mac-x64.dmg",
+              "file": "mac-x64",
               "size": "—"
             }
           ]
@@ -93,15 +105,9 @@
           "description": "适用于 64 位 Windows 10 及以上系统。",
           "downloads": [
             {
-              "name": "安装程序（推荐）",
+              "name": "安装程序",
               "desc": "exe 一键安装",
-              "url": "downloads/WTV1.0.0_windows-x64-setup.exe",
-              "size": "—"
-            },
-            {
-              "name": "便携版",
-              "desc": "免安装 zip 压缩包",
-              "url": "downloads/WTV1.0.0_windows-x64-portable.zip",
+              "file": "windows-setup",
               "size": "—"
             }
           ]
@@ -114,15 +120,9 @@
           "description": "适用于主流 x64 架构 Linux 发行版（Ubuntu、Fedora、Debian 等）。",
           "downloads": [
             {
-              "name": "AppImage（推荐）",
+              "name": "AppImage",
               "desc": "通用格式，免安装",
-              "url": "downloads/WTV1.0.0_linux-x64.AppImage",
-              "size": "—"
-            },
-            {
-              "name": "deb 包",
-              "desc": "Debian / Ubuntu 系",
-              "url": "downloads/WTV1.0.0_linux-x64.deb",
+              "file": "linux-appimage",
               "size": "—"
             }
           ]

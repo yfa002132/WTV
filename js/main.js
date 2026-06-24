@@ -10,6 +10,39 @@
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelector(".nav-links");
 
+  function initMockupCarousel() {
+    const screenshots = document.querySelectorAll(".mock-screenshot");
+    const dots = document.querySelectorAll(".mock-dot");
+    let currentIndex = 0;
+    let intervalId = null;
+
+    function showSlide(index) {
+      screenshots.forEach((img, i) => {
+        img.classList.toggle("active", i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      const nextIndex = (currentIndex + 1) % screenshots.length;
+      showSlide(nextIndex);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        clearInterval(intervalId);
+        intervalId = setInterval(nextSlide, 4000);
+      });
+    });
+
+    screenshots[0]?.classList.add("active");
+    intervalId = setInterval(nextSlide, 4000);
+  }
+
   window.addEventListener("scroll", () => {
     nav?.classList.toggle("scrolled", window.scrollY > 40);
   });
@@ -80,11 +113,13 @@
     return ver;
   }
 
-  function renderDownloadBtn(item) {
+  function renderDownloadBtn(item, baseUrl, files) {
     const isApk = /\.apk(\?|$)/i.test(item.url);
     const downloadAttr = isApk ? " download" : "";
+    const url = item.file ? files[item.file] || item.url : item.url;
+    const fullUrl = url && url.startsWith("http") ? url : baseUrl + (url || "");
     return `
-      <a class="download-btn" href="${escapeHtml(item.url)}"${downloadAttr}>
+      <a class="download-btn" href="${escapeHtml(fullUrl)}"${downloadAttr}>
         <div class="info">
           <strong>${escapeHtml(item.name)}</strong>
           <span>${escapeHtml(item.desc)}</span>
@@ -93,12 +128,12 @@
       </a>`;
   }
 
-  function renderPlatformCard(platform, versionName) {
+  function renderPlatformCard(platform, versionName, baseUrl, files) {
     const card = document.createElement("article");
     card.className = "download-card";
     card.dataset.platform = platform.id;
 
-    const optionsHtml = platform.downloads.map(renderDownloadBtn).join("");
+    const optionsHtml = platform.downloads.map((item) => renderDownloadBtn(item, baseUrl, files)).join("");
 
     card.innerHTML = `
       <div class="download-card-header">
@@ -114,18 +149,15 @@
     return card;
   }
 
-  function renderGroup(group, versionName) {
+  function renderGroup(group, versionName, baseUrl, files) {
     const section = document.createElement("div");
     section.className = "download-group";
     section.dataset.group = group.id;
 
-    const grid = document.createElement("div");
-    grid.className = "download-grid";
-    group.platforms.forEach((platform) => {
-      grid.appendChild(renderPlatformCard(platform, versionName));
-    });
-
-    section.innerHTML = `<h3 class="download-group-title">${escapeHtml(group.title)}</h3>`;
+    const title = document.createElement("h3");
+    title.className = "download-group-title";
+    title.textContent = group.title;
+    section.appendChild(title);
 
     if (group.installNote) {
       const note = document.createElement("div");
@@ -134,7 +166,13 @@
       section.appendChild(note);
     }
 
+    const grid = document.createElement("div");
+    grid.className = "download-grid";
+    group.platforms.forEach((platform) => {
+      grid.appendChild(renderPlatformCard(platform, versionName, baseUrl, files));
+    });
     section.appendChild(grid);
+
     return section;
   }
 
@@ -147,7 +185,7 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const config = await res.json();
 
-      const { version, groups } = config;
+      const { version, groups, baseUrl = "", files = {} } = config;
 
       if (heroVersion) heroVersion.textContent = `v${version.name}`;
       document.getElementById("req-version-name").textContent = version.name;
@@ -163,7 +201,7 @@
 
       container.innerHTML = "";
       groups.forEach((group) => {
-        container.appendChild(renderGroup(group, version.name));
+        container.appendChild(renderGroup(group, version.name, baseUrl, files));
       });
 
       observeElements(".download-card");
@@ -177,4 +215,5 @@
 
   observeElements(".feature-card, .platform-card, .faq-item");
   loadDownloadConfig();
+  initMockupCarousel();
 })();
