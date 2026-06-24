@@ -10,6 +10,26 @@
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelector(".nav-links");
 
+  function isWechatBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.includes("micromessenger") && !ua.includes("wxwork");
+  }
+
+  function initWechatAlert() {
+    const modal = document.getElementById("wechat-modal");
+    const closeBtn = document.querySelector(".wechat-modal-close");
+
+    if (!modal) return;
+
+    if (isWechatBrowser()) {
+      modal.classList.add("show");
+    }
+
+    closeBtn?.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
+  }
+
   function initMockupCarousel() {
     const screenshots = document.querySelectorAll(".mock-screenshot");
     const dots = document.querySelectorAll(".mock-dot");
@@ -216,4 +236,5 @@
   observeElements(".feature-card, .platform-card, .faq-item");
   loadDownloadConfig();
   initMockupCarousel();
+  initWechatAlert();
 })();

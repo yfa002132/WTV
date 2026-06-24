@@ -1032,6 +1032,74 @@ section {
   text-align: center;
 }
 
+/* ── 微信浏览器提示弹窗 ── */
+.wechat-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 11, 18, 0.85);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.wechat-modal.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.wechat-modal-content {
+  background: var(--bg-panel);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius);
+  padding: 36px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.wechat-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.wechat-modal-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.wechat-modal-content p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.wechat-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s;
+}
+
+.wechat-modal-close:hover {
+  color: var(--text-primary);
+}
+
 /* ── 响应式 ── */
 @media (max-width: 960px) {
   .hero-grid,
