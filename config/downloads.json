@@ -8,7 +8,7 @@
   },
   "baseUrl": "",
   "files": {
-    "phone-arm64": "downloads/WTV1.0.0_phone-arm64-v8a-release.apk",
+    "phone-arm64": "https://ghfast.top/https://github.com/yfa002132/WTV/releases/download/v1.0.0/WTV1.0.0_phone-arm64-v8a-release.apk",
     "phone-universal": "downloads/WTV1.0.0_phone-universal-release.apk",
     "tv-armeabi": "downloads/WTV1.0.0_tv-armeabi-v7a-release.apk",
     "mac-arm64": "downloads/WTV1.0.0_mac-arm64.dmg",
