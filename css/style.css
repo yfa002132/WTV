@@ -1242,21 +1242,32 @@ section {
   }
 
   .mockup-carousel {
-    width: 320px;
-    height: 420px;
+    width: 280px;
+    height: 380px;
+  }
+
+  .phone-mockup,
+  .tv-mockup,
+  .pc-mockup {
+    transform: none !important;
   }
 
   .phone-mockup {
-    transform: none;
-    width: 200px;
+    width: 180px;
   }
 
   .tv-mockup {
-    width: 300px;
+    width: 260px;
   }
 
   .pc-mockup {
-    width: 310px;
+    width: 270px;
+  }
+
+  .tv-mockup:hover,
+  .pc-mockup:hover,
+  .phone-mockup:hover {
+    transform: none !important;
   }
 
   .floating-card {
