@@ -63,6 +63,54 @@
     intervalId = setInterval(nextSlide, 4000);
   }
 
+  function initDeviceSwitcher() {
+    const items = document.querySelectorAll(".mockup-item");
+    const count = items.length;
+    let currentIndex = 0;
+    let intervalId = null;
+
+    function updatePositions() {
+      items.forEach((item, i) => {
+        const offset = ((i - currentIndex) + count) % count;
+        if (offset === 0) {
+          item.style.opacity = "1";
+          item.style.transform = "translateZ(0) scale(1)";
+          item.style.filter = "blur(0)";
+          item.style.pointerEvents = "auto";
+        } else {
+          const angle = (offset / count) * 360;
+          const x = Math.sin((angle * Math.PI) / 180) * 280;
+          const z = Math.cos((angle * Math.PI) / 180) * -320;
+          item.style.opacity = "0.35";
+          item.style.transform = `translateX(${x}px) translateZ(${z}px) scale(0.55)`;
+          item.style.filter = "blur(4px)";
+          item.style.pointerEvents = "none";
+        }
+      });
+    }
+
+    items.forEach((item) => {
+      item.addEventListener("click", () => {
+        const index = Array.from(items).indexOf(item);
+        currentIndex = index;
+        updatePositions();
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = setInterval(() => {
+            currentIndex = (currentIndex + 1) % count;
+            updatePositions();
+          }, 3000);
+        }
+      });
+    });
+
+    updatePositions();
+    intervalId = setInterval(() => {
+      currentIndex = (currentIndex + 1) % count;
+      updatePositions();
+    }, 3000);
+  }
+
   window.addEventListener("scroll", () => {
     nav?.classList.toggle("scrolled", window.scrollY > 40);
   });
@@ -235,5 +283,6 @@
   observeElements(".feature-card, .platform-card, .faq-item");
   loadDownloadConfig();
   initMockupCarousel();
+  initDeviceSwitcher();
   initWechatAlert();
 })();

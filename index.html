@@ -69,23 +69,51 @@
       </div>
 
       <div class="hero-visual">
-        <div class="phone-mockup">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <div class="mock-screen-container">
-              <img src="resource/images/Phone-Android/电影列表.jpg" alt="WTV 电影列表" class="mock-screenshot" />
-              <img src="resource/images/Phone-Android/电视剧列表.jpg" alt="WTV 电视剧列表" class="mock-screenshot" />
-              <img src="resource/images/Phone-Android/视频详情.jpg" alt="WTV 视频详情" class="mock-screenshot" />
-            </div>
-            <div class="mock-screen-dots">
-              <span class="mock-dot active"></span>
-              <span class="mock-dot"></span>
-              <span class="mock-dot"></span>
+        <div class="mockup-carousel">
+          <div class="mockup-item active" data-device="phone">
+            <div class="phone-mockup">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="mock-screen-container">
+                  <img src="resource/images/Phone-Android/电影列表.jpg" alt="WTV 手机端" class="mock-screenshot" />
+                  <img src="resource/images/Phone-Android/电视剧列表.jpg" alt="WTV 手机端" class="mock-screenshot" />
+                  <img src="resource/images/Phone-Android/视频详情.jpg" alt="WTV 手机端" class="mock-screenshot" />
+                </div>
+                <div class="mock-screen-dots">
+                  <span class="mock-dot active"></span>
+                  <span class="mock-dot"></span>
+                  <span class="mock-dot"></span>
+                </div>
+              </div>
+              <div class="floating-card cast">
+                <div class="icon">📺</div>
+                <div class="label">DLNA 投屏</div>
+              </div>
             </div>
           </div>
-          <div class="floating-card cast">
-            <div class="icon">📺</div>
-            <div class="label">DLNA 投屏</div>
+
+          <div class="mockup-item" data-device="tv">
+            <div class="tv-mockup">
+              <div class="tv-screen">
+                <div class="mock-screen-container">
+                  <img src="resource/images/PC-MAC/首页.png" alt="WTV TV端" class="mock-screenshot" />
+                  <img src="resource/images/PC-MAC/详情页.png" alt="WTV TV端" class="mock-screenshot" />
+                  <img src="resource/images/PC-MAC/播放页.png" alt="WTV TV端" class="mock-screenshot" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mockup-item" data-device="pc">
+            <div class="pc-mockup">
+              <div class="pc-screen">
+                <div class="mock-screen-container">
+                  <img src="resource/images/PC-MAC/首页.png" alt="WTV PC端" class="mock-screenshot" />
+                  <img src="resource/images/PC-MAC/详情页.png" alt="WTV PC端" class="mock-screenshot" />
+                  <img src="resource/images/PC-MAC/播放页.png" alt="WTV PC端" class="mock-screenshot" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -181,8 +209,8 @@
         </article>
         <article class="platform-card desktop">
           <div class="platform-icon">🍎</div>
-          <h3>macOS</h3>
-          <p>原生支持 Apple Silicon 与 Intel 双架构，适配 macOS 11 及以上系统。</p>
+          <h3>MacOS</h3>
+          <p>原生支持 Apple Silicon 与 Intel 双架构，适配 MacOS 11 及以上系统。</p>
           <ul class="platform-list">
             <li>Apple Silicon (M 系列)</li>
             <li>Intel x64</li>
@@ -313,7 +341,7 @@
           <button class="faq-question">桌面端如何安装？</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              <strong>macOS：</strong>下载对应芯片架构的 .dmg 文件，打开后将 WTV 拖入「应用程序」即可。Apple Silicon 请选择 arm64 版本，Intel Mac 请选择 x64 版本。<br><br>
+              <strong>MacOS</strong>下载对应芯片架构的 .dmg 文件，打开后将 WTV 拖入「应用程序」即可。Apple Silicon 请选择 arm64 版本，Intel Mac 请选择 x64 版本。<br><br>
               <strong>Windows：</strong>运行 .exe 安装程序按向导完成安装；便携版解压 zip 后直接运行即可。<br><br>
               <strong>Linux：</strong>AppImage 需先执行 chmod +x 赋予可执行权限后双击运行；deb 包可通过 sudo dpkg -i 安装。
             </div>
