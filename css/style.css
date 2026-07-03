@@ -325,7 +325,7 @@ img {
 
 .mockup-carousel {
   position: relative;
-  width: 580px;
+  width: 620px;
   height: 620px;
   display: flex;
   align-items: center;
@@ -387,7 +387,7 @@ img {
 
 .tv-mockup {
   position: relative;
-  width: 520px;
+  width: 570px;
   background: var(--bg-panel);
   border-radius: 20px;
   padding: 20px;
@@ -420,13 +420,13 @@ img {
   background: var(--bg-deep);
   border-radius: 12px;
   overflow: hidden;
-  aspect-ratio: 16/10;
+  height: 320px;
   position: relative;
 }
 
 .pc-mockup {
   position: relative;
-  width: 530px;
+  width: 570px;
   background: var(--bg-panel);
   border-radius: 16px;
   padding: 16px;
@@ -459,7 +459,7 @@ img {
   background: var(--bg-deep);
   border-radius: 10px;
   overflow: hidden;
-  aspect-ratio: 16/9.5;
+  height: 320px;
   position: relative;
 }
 
