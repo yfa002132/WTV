@@ -81,17 +81,17 @@
         const device = item.dataset.device;
         const isWide = device === "tv" || device === "pc";
         if (offset === 0) {
-          const scale = isWide ? 1.18 : 1;
+          const scale = isWide ? 1 : 1;
           item.style.opacity = "1";
           item.style.transform = `translateZ(0) scale(${scale})`;
           item.style.filter = "blur(0)";
           item.style.pointerEvents = "auto";
         } else {
           const angle = (offset / count) * 360;
-          const x = Math.sin((angle * Math.PI) / 180) * (isWide ? 360 : 280);
-          const z = Math.cos((angle * Math.PI) / 180) * -320;
-          item.style.opacity = "0.35";
-          item.style.transform = `translateX(${x}px) translateZ(${z}px) scale(${isWide ? 0.42 : 0.55})`;
+          const x = Math.sin((angle * Math.PI) / 180) * (isWide ? 260 : 220);
+          const z = Math.cos((angle * Math.PI) / 180) * -280;
+          item.style.opacity = isWide ? "0.16" : "0.28";
+          item.style.transform = `translateX(${x}px) translateZ(${z}px) scale(${isWide ? 0.34 : 0.48})`;
           item.style.filter = "blur(4px)";
           item.style.pointerEvents = "none";
         }

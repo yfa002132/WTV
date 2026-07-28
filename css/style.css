@@ -193,8 +193,8 @@ img {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
   align-items: center;
   padding: 80px 0 100px;
   overflow: visible;
@@ -327,8 +327,8 @@ img {
 
 .mockup-carousel {
   position: relative;
-  width: 980px;
-  height: 820px;
+  width: 760px;
+  height: 620px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -389,7 +389,7 @@ img {
 
 .tv-mockup {
   position: relative;
-  width: 920px;
+  width: 640px;
   transform: rotateY(-6deg) rotateX(3deg);
   transition: transform 0.5s;
   filter: drop-shadow(0 36px 70px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 36px var(--glow));
@@ -486,7 +486,7 @@ img {
 
 .pc-mockup {
   position: relative;
-  width: 900px;
+  width: 620px;
   transform: rotateY(-8deg) rotateX(4deg);
   transition: transform 0.5s;
   filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 40px var(--glow));
