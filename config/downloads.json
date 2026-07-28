@@ -1,26 +1,26 @@
 {
   "version": {
-    "name": "1.0.0",
-    "code": 100,
-    "desktopName": "1.0.2",
-    "desktopCode": 102,
+    "name": "1.0.6",
+    "code": 106,
+    "desktopName": "1.0.6",
+    "desktopCode": 106,
     "minAndroid": "8.0",
     "minMacOS": "10.13",
     "minWindows": "7"
   },
   "baseUrl": "https://ghfast.top/https://github.com/yfa002132/WTV/releases/",
   "files": {
-    "phone-universal": "download/v1.0.0/WTV1.0.0_phone-universal-release.apk",
-    "tv-universal": "download/v1.0.0/WTV1.0.0_tv-universal-release.apk",
-    "mac-arm64": "download/v1.0.2/WTV-1.0.2-arm64.dmg",
-    "mac-x64": "download/v1.0.2/WTV-1.0.2.dmg",
-    "windows-setup": "download/v1.0.2/WTV%20Setup%201.0.2.exe",
-    "linux-appimage": "download/v1.0.2/WTV-1.0.2.AppImage"
+    "phone-universal": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV1.0.6_phone-universal-release.apk",
+    "tv-universal": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV1.0.6_tv-universal-release.apk",
+    "mac-arm64": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6-arm64.dmg",
+    "mac-x64": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6-intel.dmg",
+    "windows-setup": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV.Setup.1.0.6.exe",
+    "linux-appimage": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6.AppImage"
   },
   "platforms": [
     {
       "id": "phone",
-      "versionName": "1.0.0",
+      "versionName": "1.0.6",
       "downloads": [
         {
           "name": "立即下载",
@@ -31,7 +31,7 @@
     },
     {
       "id": "tv",
-      "versionName": "1.0.0",
+      "versionName": "1.0.6",
       "downloads": [
         {
           "name": "立即下载",
@@ -42,7 +42,7 @@
     },
     {
       "id": "mac",
-      "versionName": "1.0.2",
+      "versionName": "1.0.6",
       "downloads": [
         {
           "name": "Apple Silicon",
@@ -58,7 +58,7 @@
     },
     {
       "id": "windows",
-      "versionName": "1.0.2",
+      "versionName": "1.0.6",
       "downloads": [
         {
           "name": "立即下载",
@@ -69,7 +69,7 @@
     },
     {
       "id": "linux",
-      "versionName": "1.0.2",
+      "versionName": "1.0.6",
       "downloads": [
         {
           "name": "立即下载",
