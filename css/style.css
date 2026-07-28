@@ -193,10 +193,11 @@ img {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
   align-items: center;
   padding: 80px 0 100px;
+  overflow: visible;
 }
 
 .hero-badge {
@@ -321,12 +322,13 @@ img {
   display: flex;
   justify-content: center;
   perspective: 1200px;
+  overflow: visible;
 }
 
 .mockup-carousel {
   position: relative;
-  width: 620px;
-  height: 620px;
+  width: 980px;
+  height: 820px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -387,80 +389,165 @@ img {
 
 .tv-mockup {
   position: relative;
-  width: 570px;
-  background: var(--bg-panel);
-  border-radius: 20px;
-  padding: 20px;
-  border: 3px solid var(--divider);
-  box-shadow:
-    0 0 0 1px rgba(78, 226, 255, 0.1),
-    0 40px 80px rgba(0, 0, 0, 0.6),
-    0 0 60px var(--glow);
-  transform: rotateY(-8deg) rotateX(4deg);
+  width: 920px;
+  transform: rotateY(-6deg) rotateX(3deg);
   transition: transform 0.5s;
+  filter: drop-shadow(0 36px 70px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 36px var(--glow));
 }
 
 .tv-mockup:hover {
   transform: rotateY(0deg) rotateX(0deg);
 }
 
-.tv-mockup::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -46px;
-  width: 140px;
-  height: 46px;
-  border-radius: 0 0 16px 16px;
-  background: linear-gradient(180deg, var(--bg-panel), var(--bg-deep));
-  transform: translateX(-50%);
+.tv-bezel {
+  position: relative;
+  background: linear-gradient(180deg, #141820 0%, #0a0d14 100%);
+  border-radius: 10px 10px 6px 6px;
+  padding: 6px 6px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 0 0 2px #05070c;
 }
 
 .tv-screen {
-  background: var(--bg-deep);
-  border-radius: 12px;
+  background: #05070c;
+  border-radius: 2px;
   overflow: hidden;
-  height: 320px;
+  aspect-ratio: 16 / 9;
   position: relative;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.tv-screen-empty {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 45%, rgba(28, 80, 140, 0.18) 0%, transparent 70%),
+    linear-gradient(165deg, #070b12 0%, #0d1522 55%, #080c14 100%);
+}
+
+.tv-chin {
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #10141c 0%, #070a10 100%);
+  border-radius: 0 0 5px 5px;
+}
+
+.tv-led {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #1fa0ff;
+  box-shadow: 0 0 8px rgba(31, 160, 255, 0.85);
+  opacity: 0.85;
+}
+
+.tv-legs {
+  position: relative;
+  height: 42px;
+  margin-top: 2px;
+}
+
+.tv-leg {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 42px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #2a3344 0%, #151b28 100%);
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.35);
+}
+
+.tv-leg.left {
+  left: 18%;
+  transform: skewX(18deg);
+}
+
+.tv-leg.right {
+  right: 18%;
+  transform: skewX(-18deg);
+}
+
+.tv-legs::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 0;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  filter: blur(2px);
 }
 
 .pc-mockup {
   position: relative;
-  width: 570px;
-  background: var(--bg-panel);
-  border-radius: 16px;
-  padding: 16px;
-  border: 2px solid var(--divider);
-  box-shadow:
-    0 0 0 1px rgba(78, 226, 255, 0.1),
-    0 40px 80px rgba(0, 0, 0, 0.6),
-    0 0 60px var(--glow);
+  width: 900px;
   transform: rotateY(-8deg) rotateX(4deg);
   transition: transform 0.5s;
+  filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 40px var(--glow));
 }
 
 .pc-mockup:hover {
   transform: rotateY(0deg) rotateX(0deg);
 }
 
-.pc-mockup::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -40px;
-  width: 160px;
-  height: 40px;
-  border-radius: 0 0 14px 14px;
-  background: linear-gradient(180deg, var(--bg-panel), var(--bg-deep));
-  transform: translateX(-50%);
+.pc-lid {
+  position: relative;
+  background: linear-gradient(180deg, #222b3d 0%, #151d2c 100%);
+  border-radius: 14px 14px 8px 8px;
+  padding: 12px 12px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.pc-camera {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  background: #0a101a;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 0 2px rgba(32, 149, 244, 0.15);
 }
 
 .pc-screen {
   background: var(--bg-deep);
-  border-radius: 10px;
+  border-radius: 6px;
   overflow: hidden;
-  height: 320px;
+  aspect-ratio: 16 / 10;
   position: relative;
+}
+
+.pc-base {
+  position: relative;
+  margin-top: -1px;
+}
+
+.pc-hinge {
+  display: block;
+  height: 10px;
+  margin: 0 18px;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(180deg, #2a3448, #151d2c);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.pc-deck {
+  display: block;
+  height: 16px;
+  margin-top: -2px;
+  border-radius: 0 0 18px 18px;
+  background: linear-gradient(180deg, #1a2334 0%, #0e1522 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: none;
+  transform: perspective(420px) rotateX(28deg);
+  transform-origin: top center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .mock-screen-container {
@@ -710,6 +797,24 @@ section {
   font-weight: 700;
 }
 
+.platform-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.platform-downloads .download-cta {
+  align-self: auto;
+  padding: 12px 22px;
+  font-size: 0.95rem;
+}
+
+.platform-downloads .download-error {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
 /* ── 播放器亮点 ── */
 .player-showcase {
   display: grid;
@@ -915,6 +1020,11 @@ section {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.download-cta {
+  align-self: flex-start;
+  width: auto;
 }
 
 .download-btn {
@@ -1270,8 +1380,8 @@ section {
   }
 
   .mockup-carousel {
-    width: 280px;
-    height: 380px;
+    width: 380px;
+    height: 460px;
   }
 
   .phone-mockup,
@@ -1285,11 +1395,40 @@ section {
   }
 
   .tv-mockup {
-    width: 260px;
+    width: 400px;
   }
 
   .pc-mockup {
-    width: 270px;
+    width: 380px;
+  }
+
+  .tv-chin {
+    height: 10px;
+  }
+
+  .tv-legs {
+    height: 28px;
+  }
+
+  .tv-leg {
+    width: 7px;
+    height: 28px;
+  }
+
+  .pc-hinge {
+    margin: 0 10px;
+    height: 8px;
+  }
+
+  .pc-deck {
+    height: 12px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .pc-camera {
+    width: 6px;
+    height: 6px;
+    margin-bottom: 6px;
   }
 
   .tv-mockup:hover,

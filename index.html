@@ -22,12 +22,11 @@
       </a>
       <ul class="nav-links">
         <li><a href="#features">功能亮点</a></li>
-        <li><a href="#platform">多端体验</a></li>
+        <li><a href="#platform">多端下载</a></li>
         <li><a href="#player">专业播放</a></li>
-        <li><a href="#download">下载安装</a></li>
         <li><a href="#faq">常见问题</a></li>
       </ul>
-      <a href="#download" class="nav-cta">立即下载</a>
+      <a href="#platform" class="nav-cta">立即下载</a>
       <button class="menu-toggle" aria-label="打开菜单">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 6h16M4 12h16M4 18h16"/>
@@ -46,7 +45,7 @@
           海量电影、电视剧、动漫、综艺与纪录片，搭配专业播放器、字幕与 DLNA 投屏，畅爽的大屏观影体验。
         </p>
         <div class="hero-actions">
-          <a href="#download" class="btn btn-primary">
+          <a href="#platform" class="btn btn-primary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             免费下载
           </a>
@@ -94,24 +93,36 @@
 
           <div class="mockup-item" data-device="tv">
             <div class="tv-mockup">
-              <div class="tv-screen">
-                <div class="mock-screen-container">
-                  <img src="resource/images/PC-MAC/首页.png" alt="WTV TV端" class="mock-screenshot" />
-                  <img src="resource/images/PC-MAC/详情页.png" alt="WTV TV端" class="mock-screenshot" />
-                  <img src="resource/images/PC-MAC/播放页.png" alt="WTV TV端" class="mock-screenshot" />
+              <div class="tv-bezel">
+                <div class="tv-screen">
+                  <div class="tv-screen-empty" aria-hidden="true"></div>
                 </div>
+                <div class="tv-chin" aria-hidden="true">
+                  <span class="tv-led"></span>
+                </div>
+              </div>
+              <div class="tv-legs" aria-hidden="true">
+                <span class="tv-leg left"></span>
+                <span class="tv-leg right"></span>
               </div>
             </div>
           </div>
 
           <div class="mockup-item" data-device="pc">
             <div class="pc-mockup">
-              <div class="pc-screen">
-                <div class="mock-screen-container">
-                  <img src="resource/images/PC-MAC/首页.png" alt="WTV PC端" class="mock-screenshot" />
-                  <img src="resource/images/PC-MAC/详情页.png" alt="WTV PC端" class="mock-screenshot" />
-                  <img src="resource/images/PC-MAC/播放页.png" alt="WTV PC端" class="mock-screenshot" />
+              <div class="pc-lid">
+                <span class="pc-camera" aria-hidden="true"></span>
+                <div class="pc-screen">
+                  <div class="mock-screen-container">
+                    <img src="resource/images/PC-MAC/首页.png" alt="WTV PC端" class="mock-screenshot" />
+                    <img src="resource/images/PC-MAC/详情页.png" alt="WTV PC端" class="mock-screenshot" />
+                    <img src="resource/images/PC-MAC/播放页.png" alt="WTV PC端" class="mock-screenshot" />
+                  </div>
                 </div>
+              </div>
+              <div class="pc-base" aria-hidden="true">
+                <span class="pc-hinge"></span>
+                <span class="pc-deck"></span>
               </div>
             </div>
           </div>
@@ -172,68 +183,73 @@
         <article class="feature-card">
           <div class="feature-icon">🔄</div>
           <h3>应用内更新</h3>
-          <p>内置版本检测与 APK 下载更新，关于页面可查看当前版本，一键检查最新发布。</p>
+          <p>内置版本检测与安装包下载更新，关于页面可查看当前版本，一键检查最新发布。</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- 多端体验 -->
+  <!-- 多端体验 / 下载 -->
   <section id="platform" class="platform-section">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Platforms</span>
         <h2>全平台，一处追剧</h2>
-        <p>移动端、桌面端与电视端共享账号与播放进度，针对不同设备分别优化交互体验。</p>
+        <p>移动端、桌面端与电视端共享账号与播放进度，针对不同设备分别优化交互体验。选择你的平台直接下载。</p>
       </div>
       <div class="platform-cards platform-cards-wide">
-        <article class="platform-card phone">
+        <article class="platform-card phone" data-platform="phone">
           <div class="platform-icon">📱</div>
           <h3>手机端</h3>
           <p>竖屏单手操作，底部导航切换首页与个人中心，适合通勤与碎片时间追剧。</p>
           <ul class="platform-list">
-            <li>Android 8.0+</li>
+            <li>Android 8.0+ · Media3</li>
             <li>电影 / 电视剧 / 动漫 / 综艺 / 记录</li>
             <li>投屏至客厅电视</li>
           </ul>
+          <div class="platform-downloads"></div>
         </article>
-        <article class="platform-card tv">
+        <article class="platform-card tv" data-platform="tv">
           <div class="platform-icon">📺</div>
           <h3>电视端</h3>
           <p>Leanback 大屏布局，遥控器焦点导航，专为 Android TV 与智能电视打造。</p>
           <ul class="platform-list">
             <li>Android TV 8.0+</li>
-            <li>精选 / 排行 / 历史 / 收藏</li>
+            <li>精选 / 电影 / 剧集 / 动漫 / 综艺 / 纪录片</li>
             <li>投屏接收端</li>
           </ul>
+          <div class="platform-downloads"></div>
         </article>
-        <article class="platform-card desktop">
+        <article class="platform-card desktop" data-platform="mac">
           <div class="platform-icon">🍎</div>
           <h3>MacOS</h3>
-          <p>原生支持 Apple Silicon 与 Intel 双架构，适配 MacOS 11 及以上系统。</p>
+          <p>原生支持 Apple Silicon 与 Intel 双架构，适配 macOS 10.13 及以上系统。</p>
           <ul class="platform-list">
             <li>Apple Silicon (M 系列)</li>
             <li>Intel x64</li>
-            <li>.dmg 安装包</li>
+            <li>.dmg 安装包 · v1.0.2</li>
           </ul>
+          <div class="platform-downloads"></div>
         </article>
-        <article class="platform-card desktop">
+        <article class="platform-card desktop" data-platform="windows">
           <div class="platform-icon">🪟</div>
           <h3>Windows</h3>
-          <p>支持 Windows 10 / 11 64 位系统，提供安装程序与便携版两种形式。</p>
+          <p>支持 Windows 7 SP1 及以上 64 位系统（推荐 10 / 11），提供 NSIS 安装程序。</p>
           <ul class="platform-list">
-            <li>Windows 10 / 11 x64</li>
-            <li>exe 安装程序</li>
+            <li>Windows 7+ x64</li>
+            <li>exe 安装程序 · v1.0.2</li>
           </ul>
+          <div class="platform-downloads"></div>
         </article>
-        <article class="platform-card desktop">
+        <article class="platform-card desktop" data-platform="linux">
           <div class="platform-icon">🐧</div>
           <h3>Linux</h3>
-          <p>提供 AppImage 与 deb 包，兼容 Ubuntu、Debian、Fedora 等主流发行版。</p>
+          <p>提供 AppImage 免安装包，兼容 Ubuntu 18.04+、Debian、Fedora 等主流发行版。</p>
           <ul class="platform-list">
             <li>x64 架构</li>
-            <li>deb 包</li>
+            <li>AppImage · v1.0.2</li>
           </ul>
+          <div class="platform-downloads"></div>
         </article>
       </div>
     </div>
@@ -252,7 +268,7 @@
       </div>
       <div class="player-content">
         <h3>专业级播放器</h3>
-        <p>基于 VLC 内核，支持丰富的播放控制与个性化设置，满足各类观影需求。</p>
+        <p>移动端基于 Media3 / ExoPlayer，桌面端基于 HLS.js，支持丰富的播放控制与个性化设置。</p>
         <div class="player-features">
           <div class="player-feature">
             <span class="player-feature-num">01</span>
@@ -277,45 +293,11 @@
           </div>
         </div>
         <div class="player-tags" style="margin-top: 28px;">
-          <span class="player-tag">VLC 内核</span>
+          <span class="player-tag">Media3</span>
           <span class="player-tag">ExoPlayer</span>
+          <span class="player-tag">HLS.js</span>
           <span class="player-tag">多音轨</span>
-          <span class="player-tag">去广告代理</span>
           <span class="player-tag">m3u8 支持</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 下载 -->
-  <section id="download" class="download-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Download</span>
-        <h2>下载安装</h2>
-        <p id="download-intro">选择对应平台与系统架构的安装包，下载地址由配置文件统一管理。</p>
-      </div>
-
-      <div id="download-groups">
-        <p class="download-loading">正在加载下载配置…</p>
-      </div>
-
-      <div class="requirements" id="requirements">
-        <div class="req-item">
-          <div class="value" id="req-platform-count">—</div>
-          <div class="label">支持平台数</div>
-        </div>
-        <div class="req-item">
-          <div class="value" id="req-version-code">—</div>
-          <div class="label">Version Code</div>
-        </div>
-        <div class="req-item">
-          <div class="value" id="req-version-name">—</div>
-          <div class="label">当前版本</div>
-        </div>
-        <div class="req-item">
-          <div class="value" id="req-min-android">—</div>
-          <div class="label">Android 最低版本</div>
         </div>
       </div>
     </div>
@@ -333,7 +315,7 @@
           <button class="faq-question">手机版和电视版有什么区别？</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              两者共享内容源与账号体系，但 UI 与交互针对不同设备优化：手机版为竖屏 + 底部导航；电视版为 Leanback 大屏布局，支持遥控器焦点导航，并额外提供精选页、排行榜等入口。包名分别为 com.film.wtv 与 com.film.wtv.tv，需分别安装。
+              两者共享内容源与账号体系，但 UI 与交互针对不同设备优化：手机版为竖屏 + 底部导航；电视版为 Leanback 大屏布局，支持遥控器焦点导航，并额外提供精选页等入口。请按设备下载对应渠道的 APK（phone / tv）。
             </div>
           </div>
         </div>
@@ -341,9 +323,9 @@
           <button class="faq-question">桌面端如何安装？</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              <strong>MacOS</strong>下载对应芯片架构的 .dmg 文件，打开后将 WTV 拖入「应用程序」即可。Apple Silicon 请选择 arm64 版本，Intel Mac 请选择 x64 版本。<br><br>
-              <strong>Windows：</strong>运行 .exe 安装程序按向导完成安装；便携版解压 zip 后直接运行即可。<br><br>
-              <strong>Linux：</strong>AppImage 需先执行 chmod +x 赋予可执行权限后双击运行；deb 包可通过 sudo dpkg -i 安装。
+              <strong>macOS：</strong>下载对应芯片架构的 .dmg 文件，打开后将 WTV 拖入「应用程序」即可。Apple Silicon 请选择 arm64 版本，Intel Mac 请选择 x64 版本。<br><br>
+              <strong>Windows：</strong>运行「WTV Setup」安装程序，按向导完成安装（支持自定义安装路径）。<br><br>
+              <strong>Linux：</strong>下载 AppImage 后执行 chmod +x 赋予可执行权限，再双击运行即可。
             </div>
           </div>
         </div>
@@ -351,7 +333,7 @@
           <button class="faq-question">如何在 Android 电视上安装？</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              可通过 U 盘拷贝 APK 至电视安装，或使用 adb install 命令。若 PatchWall 提示不兼容，请下载 armeabi-v7a 版本。安装后在应用列表或 Leanback 启动器中找到 WTV 即可。
+              可通过 U 盘拷贝 APK 至电视安装，或使用 adb install。官网提供 Universal 通用包，兼容 64 位与 32 位电视。若 PatchWall 等仍提示不兼容，请先完全卸载旧版后再安装。
             </div>
           </div>
         </div>
@@ -367,7 +349,7 @@
           <button class="faq-question">如何反馈问题或建议？</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              应用内「个人中心 → 意见反馈」可提交问题。也可通过 QQ：416528206 或邮箱 163@outlook.com 联系我们，或在 GitHub 项目 WTVPlayForAndroid 提交 Issue。
+              应用内「个人中心 → 意见反馈」可提交问题。也可通过 QQ：416528206 或邮箱： yfa002132@gmail.com 联系我们。
             </div>
           </div>
         </div>
@@ -390,7 +372,7 @@
           <h4>快速链接</h4>
           <ul>
             <li><a href="#features">功能亮点</a></li>
-            <li><a href="#download">下载安装</a></li>
+            <li><a href="#platform">多端下载</a></li>
             <li><a href="#faq">常见问题</a></li>
           </ul>
         </div>

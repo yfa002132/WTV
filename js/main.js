@@ -31,36 +31,42 @@
   }
 
   function initMockupCarousel() {
-    const screenshots = document.querySelectorAll(".mock-screenshot");
-    const dots = document.querySelectorAll(".mock-dot");
-    let currentIndex = 0;
-    let intervalId = null;
+    document.querySelectorAll(".mock-screen-container").forEach((container) => {
+      const screenshots = container.querySelectorAll(".mock-screenshot");
+      if (!screenshots.length) return;
 
-    function showSlide(index) {
-      screenshots.forEach((img, i) => {
-        img.classList.toggle("active", i === index);
+      const parent = container.closest(".phone-screen, .tv-screen, .pc-screen");
+      const dots = parent ? parent.querySelectorAll(".mock-dot") : [];
+      let currentIndex = 0;
+      let intervalId = null;
+
+      function showSlide(index) {
+        screenshots.forEach((img, i) => {
+          img.classList.toggle("active", i === index);
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+        });
+        currentIndex = index;
+      }
+
+      function nextSlide() {
+        showSlide((currentIndex + 1) % screenshots.length);
+      }
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          showSlide(index);
+          clearInterval(intervalId);
+          intervalId = setInterval(nextSlide, 4000);
+        });
       });
-      dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
-      });
-      currentIndex = index;
-    }
 
-    function nextSlide() {
-      const nextIndex = (currentIndex + 1) % screenshots.length;
-      showSlide(nextIndex);
-    }
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        showSlide(index);
-        clearInterval(intervalId);
+      showSlide(0);
+      if (screenshots.length > 1) {
         intervalId = setInterval(nextSlide, 4000);
-      });
+      }
     });
-
-    screenshots[0]?.classList.add("active");
-    intervalId = setInterval(nextSlide, 4000);
   }
 
   function initDeviceSwitcher() {
@@ -72,17 +78,20 @@
     function updatePositions() {
       items.forEach((item, i) => {
         const offset = ((i - currentIndex) + count) % count;
+        const device = item.dataset.device;
+        const isWide = device === "tv" || device === "pc";
         if (offset === 0) {
+          const scale = isWide ? 1.18 : 1;
           item.style.opacity = "1";
-          item.style.transform = "translateZ(0) scale(1)";
+          item.style.transform = `translateZ(0) scale(${scale})`;
           item.style.filter = "blur(0)";
           item.style.pointerEvents = "auto";
         } else {
           const angle = (offset / count) * 360;
-          const x = Math.sin((angle * Math.PI) / 180) * 280;
+          const x = Math.sin((angle * Math.PI) / 180) * (isWide ? 360 : 280);
           const z = Math.cos((angle * Math.PI) / 180) * -320;
           item.style.opacity = "0.35";
-          item.style.transform = `translateX(${x}px) translateZ(${z}px) scale(0.55)`;
+          item.style.transform = `translateX(${x}px) translateZ(${z}px) scale(${isWide ? 0.42 : 0.55})`;
           item.style.filter = "blur(4px)";
           item.style.pointerEvents = "none";
         }
@@ -174,17 +183,20 @@
       .replace(/"/g, "&quot;");
   }
 
-  function platformSubtitle(platform, versionName) {
-    const ver = `v${versionName}`;
-    if (platform.meta) return `${platform.meta} · ${ver}`;
-    return ver;
-  }
-
   function renderDownloadBtn(item, baseUrl, files) {
-    const isApk = /\.apk(\?|$)/i.test(item.url);
-    const downloadAttr = isApk ? " download" : "";
     const url = item.file ? files[item.file] || item.url : item.url;
     const fullUrl = url && url.startsWith("http") ? url : baseUrl + (url || "");
+    const isApk = /\.apk(\?|$)/i.test(fullUrl);
+    const downloadAttr = isApk ? " download" : "";
+
+    if (item.simple || (!item.desc && !item.size)) {
+      return `
+      <a class="btn btn-primary download-cta" href="${escapeHtml(fullUrl)}"${downloadAttr}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        ${escapeHtml(item.name || "立即下载")}
+      </a>`;
+    }
+
     return `
       <a class="download-btn" href="${escapeHtml(fullUrl)}"${downloadAttr}>
         <div class="info">
@@ -195,56 +207,7 @@
       </a>`;
   }
 
-  function renderPlatformCard(platform, versionName, baseUrl, files) {
-    const card = document.createElement("article");
-    card.className = "download-card";
-    card.dataset.platform = platform.id;
-
-    const optionsHtml = platform.downloads.map((item) => renderDownloadBtn(item, baseUrl, files)).join("");
-
-    card.innerHTML = `
-      <div class="download-card-header">
-        <span class="icon">${escapeHtml(platform.icon)}</span>
-        <div>
-          <h3>${escapeHtml(platform.title)}</h3>
-          <div class="pkg">${escapeHtml(platformSubtitle(platform, versionName))}</div>
-        </div>
-      </div>
-      <p>${escapeHtml(platform.description)}</p>
-      <div class="download-options">${optionsHtml}</div>`;
-
-    return card;
-  }
-
-  function renderGroup(group, versionName, baseUrl, files) {
-    const section = document.createElement("div");
-    section.className = "download-group";
-    section.dataset.group = group.id;
-
-    const title = document.createElement("h3");
-    title.className = "download-group-title";
-    title.textContent = group.title;
-    section.appendChild(title);
-
-    if (group.installNote) {
-      const note = document.createElement("div");
-      note.className = "download-group-note";
-      note.innerHTML = `<strong>安装提示：</strong>${escapeHtml(group.installNote)}`;
-      section.appendChild(note);
-    }
-
-    const grid = document.createElement("div");
-    grid.className = "download-grid";
-    group.platforms.forEach((platform) => {
-      grid.appendChild(renderPlatformCard(platform, versionName, baseUrl, files));
-    });
-    section.appendChild(grid);
-
-    return section;
-  }
-
   async function loadDownloadConfig() {
-    const container = document.getElementById("download-groups");
     const heroVersion = document.getElementById("hero-version");
 
     try {
@@ -252,31 +215,38 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const config = await res.json();
 
-      const { version, groups, baseUrl = "", files = {} } = config;
+      const { version, platforms = [], groups, baseUrl = "", files = {} } = config;
 
-      if (heroVersion) heroVersion.textContent = `v${version.name}`;
-      document.getElementById("req-version-name").textContent = version.name;
-      document.getElementById("req-version-code").textContent = version.code;
+      // 兼容旧 groups 结构
+      const platformList = platforms.length
+        ? platforms
+        : (groups || []).flatMap((g) =>
+            (g.platforms || []).map((p) => ({
+              ...p,
+              versionName: p.versionName || g.versionName,
+            }))
+          );
 
-      const platformCount = groups.reduce((n, g) => n + g.platforms.length, 0);
-      document.getElementById("req-platform-count").textContent = platformCount;
+      const phone = platformList.find((p) => p.id === "phone");
+      const androidName = phone?.versionName || version.name;
 
-      const reqAndroid = document.getElementById("req-min-android");
-      if (reqAndroid) {
-        reqAndroid.textContent = version.minAndroid ? `${version.minAndroid}+` : "—";
-      }
+      if (heroVersion) heroVersion.textContent = `v${androidName}`;
 
-      container.innerHTML = "";
-      groups.forEach((group) => {
-        container.appendChild(renderGroup(group, version.name, baseUrl, files));
+      platformList.forEach((platform) => {
+        const card = document.querySelector(`.platform-card[data-platform="${platform.id}"]`);
+        if (!card) return;
+        const slot = card.querySelector(".platform-downloads");
+        if (!slot) return;
+        slot.innerHTML = (platform.downloads || [])
+          .map((item) => renderDownloadBtn(item, baseUrl, files))
+          .join("");
       });
-
-      observeElements(".download-card");
     } catch (err) {
       console.error("加载下载配置失败:", err);
       if (heroVersion) heroVersion.textContent = "v—";
-      container.innerHTML =
-        '<p class="download-error">下载配置加载失败，请稍后刷新页面或联系管理员。</p>';
+      document.querySelectorAll(".platform-downloads").forEach((slot) => {
+        slot.innerHTML = '<p class="download-error">下载配置加载失败</p>';
+      });
     }
   }
 
