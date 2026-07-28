@@ -1361,6 +1361,8 @@ section {
 
   .hero-grid {
     text-align: center;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .hero-desc {
@@ -1377,11 +1379,13 @@ section {
 
   .hero-visual {
     order: -1;
+    transform: scale(0.9);
+    transform-origin: center top;
   }
 
   .mockup-carousel {
-    width: 380px;
-    height: 460px;
+    width: 320px;
+    height: 380px;
   }
 
   .phone-mockup,
@@ -1395,11 +1399,11 @@ section {
   }
 
   .tv-mockup {
-    width: 400px;
+    width: 320px;
   }
 
   .pc-mockup {
-    width: 380px;
+    width: 300px;
   }
 
   .tv-chin {
@@ -1464,12 +1468,50 @@ section {
 }
 
 @media (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+
   .container {
     width: min(100% - 32px, var(--max-width));
   }
 
   section {
     padding: 72px 0;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-grid {
+    gap: 16px;
+    padding: 56px 0 72px;
+  }
+
+  .hero-visual {
+    transform: scale(0.82);
+  }
+
+  .mockup-carousel {
+    width: 280px;
+    height: 320px;
+  }
+
+  .phone-mockup {
+    width: 150px;
+  }
+
+  .tv-mockup {
+    width: 280px;
+  }
+
+  .pc-mockup {
+    width: 260px;
+  }
+
+  .nav-cta {
+    display: none;
   }
 
   .features-grid {
