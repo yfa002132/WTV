@@ -1363,6 +1363,7 @@ section {
     text-align: center;
     grid-template-columns: 1fr;
     gap: 24px;
+    overflow-x: clip;
   }
 
   .hero-desc {
@@ -1381,11 +1382,14 @@ section {
     order: -1;
     transform: scale(0.9);
     transform-origin: center top;
+    overflow: hidden;
   }
 
   .mockup-carousel {
     width: 320px;
     height: 380px;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .phone-mockup,
@@ -1472,6 +1476,10 @@ section {
     font-size: 14px;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   .container {
     width: min(100% - 32px, var(--max-width));
   }
@@ -1482,6 +1490,7 @@ section {
 
   .hero {
     min-height: auto;
+    overflow: hidden;
   }
 
   .hero-grid {
@@ -1491,11 +1500,13 @@ section {
 
   .hero-visual {
     transform: scale(0.82);
+    overflow: hidden;
   }
 
   .mockup-carousel {
     width: 280px;
     height: 320px;
+    max-width: 100%;
   }
 
   .phone-mockup {
