@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="WTV — 多端影视聚合，支持手机、电视、Windows、Mac、Linux。海量电影、电视剧、动漫、综艺与纪录片，专业播放器、字幕支持、DLNA 投屏，畅享大屏观影体验。" />
-  <meta name="keywords" content="WTV,WTV Play,影视,聚合,Android TV,Windows,Mac,Linux,投屏,下载" />
+  <meta name="description" content="WTV — 多端影视聚合，支持 Android、iOS、电视、Windows、Mac、Linux。海量电影、电视剧、动漫、综艺与纪录片，专业播放器、字幕支持、DLNA 投屏，畅享大屏观影体验。" />
+  <meta name="keywords" content="WTV,WTV Play,影视,聚合,Android,iOS,PWA,Android TV,Windows,Mac,Linux,投屏,下载" />
   <title>WTV — 多端影视聚合</title>
   <link rel="icon" href="https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/v1.0.0/logo.webp" type="image/webp" />
   <link rel="stylesheet" href="css/style.css" />
@@ -41,7 +41,7 @@
       <div class="hero-content">
         <h1>随时随地，<em>畅爽观影</em></h1>
         <p class="hero-desc">
-          WTV 是一款全平台影视搜索聚合应用，覆盖 Android 手机、智能电视，以及 MacOS、Windows、Linux 桌面端。
+          WTV 是一款全平台影视搜索聚合应用，覆盖 Android / iOS 手机、智能电视，以及 MacOS、Windows、Linux 桌面端。
           海量电影、电视剧、动漫、综艺与纪录片，搭配专业播放器、字幕与 DLNA 投屏，畅爽的大屏观影体验。
         </p>
         <div class="hero-actions">
@@ -57,8 +57,8 @@
             <span>全平台覆盖</span>
           </div>
           <div class="hero-meta-item">
-            <strong>Android 8+</strong>
-            <span>移动端要求</span>
+            <strong>Android / iOS</strong>
+            <span>移动端支持</span>
           </div>
           <div class="hero-meta-item">
             <strong>Win / Mac / Linux</strong>
@@ -199,17 +199,28 @@
       <div class="section-header">
         <span class="section-tag">Platforms</span>
         <h2>全平台，一处追剧</h2>
-        <p>移动端、桌面端与电视端共享账号与播放进度，针对不同设备分别优化交互体验。选择你的平台直接下载。</p>
+        <p>移动端、桌面端与电视端共享账号与播放进度，针对不同设备分别优化交互体验。Android / 桌面端可直接下载；iOS 请打开安装页后添加到主屏幕。</p>
       </div>
       <div class="platform-cards platform-cards-wide">
         <article class="platform-card phone" data-platform="phone">
           <div class="platform-icon">📱</div>
-          <h3>手机端</h3>
+          <h3>Android 手机</h3>
           <p>竖屏单手操作，底部导航切换首页与个人中心，适合通勤与碎片时间追剧。</p>
           <ul class="platform-list">
             <li>Android 8.0+ · Media3</li>
             <li>电影 / 电视剧 / 动漫 / 综艺 / 记录</li>
             <li>投屏至客厅电视</li>
+          </ul>
+          <div class="platform-downloads"></div>
+        </article>
+        <article class="platform-card ios" data-platform="ios">
+          <div class="platform-icon">📲</div>
+          <h3>iOS 手机</h3>
+          <p>以 Web App（PWA）方式安装，Safari 打开后添加到主屏幕，即可获得接近原生 App 的全屏体验。</p>
+          <ul class="platform-list">
+            <li>iOS 16+ · Safari</li>
+            <li>添加到主屏幕安装</li>
+            <li>电影 / 电视剧 / 动漫 / 综艺 / 记录</li>
           </ul>
           <div class="platform-downloads"></div>
         </article>
@@ -311,7 +322,19 @@
           <button class="faq-question">手机版和电视版有什么区别？</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              两者共享内容源与账号体系，但 UI 与交互针对不同设备优化：手机版为竖屏 + 底部导航；电视版为 Leanback 大屏布局，支持遥控器焦点导航，并额外提供精选页等入口。请按设备下载对应渠道的 APK（phone / tv）。
+              两者共享内容源与账号体系，但 UI 与交互针对不同设备优化：手机版为竖屏 + 底部导航；电视版为 Leanback 大屏布局，支持遥控器焦点导航，并额外提供精选页等入口。Android 请按设备下载对应渠道的 APK（phone / tv）；iOS 请使用 Safari 以 PWA 方式安装。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">iOS 如何安装？</button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              iOS 端采用可安装的 Web App（PWA），无需 App Store。<br><br>
+              1. 使用 <strong>Safari</strong> 打开安装页（建议系统 iOS 16+）<br>
+              2. 点击底部分享按钮 → 选择「添加到主屏幕」<br>
+              3. 确认后从主屏幕图标启动，即可全屏使用，体验接近原生 App<br><br>
+              请勿使用微信或其他内置浏览器打开，否则可能无法添加到主屏幕。
             </div>
           </div>
         </div>
@@ -362,7 +385,7 @@
             <img src="https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/v1.0.0/logo.webp" alt="WTV" width="40" height="40" />
             WTV Play
           </a>
-          <p>多端影视聚合，支持手机、电视、Windows、Mac、Linux，让好内容触手可及。</p>
+          <p>多端影视聚合，支持 Android、iOS、电视、Windows、Mac、Linux，让好内容触手可及。</p>
         </div>
         <div class="footer-col">
           <h4>快速链接</h4>

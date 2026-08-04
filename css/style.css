@@ -760,6 +760,10 @@ section {
   background: linear-gradient(90deg, var(--accent-cyan), #9af6ff);
 }
 
+.platform-card.ios::before {
+  background: linear-gradient(90deg, #a8b4c4, #5dabf3);
+}
+
 .platform-icon {
   font-size: 2.5rem;
   margin-bottom: 20px;

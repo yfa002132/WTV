@@ -187,18 +187,23 @@
     const url = item.file ? files[item.file] || item.url : item.url;
     const fullUrl = url && url.startsWith("http") ? url : baseUrl + (url || "");
     const isApk = /\.apk(\?|$)/i.test(fullUrl);
-    const downloadAttr = isApk ? " download" : "";
+    const isExternal = !!item.external;
+    const downloadAttr = isApk && !isExternal ? " download" : "";
+    const externalAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : "";
+    const icon = isExternal
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
 
     if (item.simple || (!item.desc && !item.size)) {
       return `
-      <a class="btn btn-primary download-cta" href="${escapeHtml(fullUrl)}"${downloadAttr}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        ${escapeHtml(item.name || "立即下载")}
+      <a class="btn btn-primary download-cta" href="${escapeHtml(fullUrl)}"${downloadAttr}${externalAttr}>
+        ${icon}
+        ${escapeHtml(item.name || (isExternal ? "打开安装页" : "立即下载"))}
       </a>`;
     }
 
     return `
-      <a class="download-btn" href="${escapeHtml(fullUrl)}"${downloadAttr}>
+      <a class="download-btn" href="${escapeHtml(fullUrl)}"${downloadAttr}${externalAttr}>
         <div class="info">
           <strong>${escapeHtml(item.name)}</strong>
           <span>${escapeHtml(item.desc)}</span>

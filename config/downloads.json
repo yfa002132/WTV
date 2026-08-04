@@ -4,7 +4,9 @@
     "code": 106,
     "desktopName": "1.0.6",
     "desktopCode": 106,
+    "iosName": "1.0.6",
     "minAndroid": "8.0",
+    "minIOS": "16.0",
     "minMacOS": "10.13",
     "minWindows": "7"
   },
@@ -15,7 +17,8 @@
     "mac-arm64": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6-arm64.dmg",
     "mac-x64": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6-intel.dmg",
     "windows-setup": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV.Setup.1.0.6.exe",
-    "linux-appimage": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6.AppImage"
+    "linux-appimage": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6.AppImage",
+    "ios-pwa": "http://124.222.196.128:5566/"
   },
   "platforms": [
     {
@@ -26,6 +29,18 @@
           "name": "立即下载",
           "file": "phone-universal",
           "simple": true
+        }
+      ]
+    },
+    {
+      "id": "ios",
+      "versionName": "1.0.6",
+      "downloads": [
+        {
+          "name": "打开安装页",
+          "file": "ios-pwa",
+          "simple": true,
+          "external": true
         }
       ]
     },
