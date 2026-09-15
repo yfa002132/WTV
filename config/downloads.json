@@ -1,7 +1,7 @@
 {
   "version": {
-    "name": "1.1.1",
-    "code": 111,
+    "name": "1.1.2",
+    "code": 112,
     "desktopName": "1.0.6",
     "desktopCode": 106,
     "iosName": "1.0.6",
@@ -12,7 +12,7 @@
   },
   "baseUrl": "https://ghfast.top/https://github.com/yfa002132/WTV/releases/",
   "files": {
-    "phone-universal": "https://gh-proxy.org/https://github.com/yfa002132/WTV/releases/download/V1.1.1/WTV1.1.1_phone-universal-release.apk",
+    "phone-universal": "https://gh-proxy.cn/https://github.com/yfa002132/WTV/releases/download/V1.1.2/WTV1.1.2_phone-universal-release.apk",
     "tv-universal": "https://gh-proxy.org/https://github.com/yfa002132/WTV/releases/download/V1.1.1/WTV1.1.1_tv-universal-release.apk",
     "mac-arm64": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6-arm64.dmg",
     "mac-x64": "https://gh.dpik.top/https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6-intel.dmg",
@@ -23,7 +23,7 @@
   "platforms": [
     {
       "id": "phone",
-      "versionName": "1.1.1",
+      "versionName": "1.1.2",
       "downloads": [
         {
           "name": "立即下载",
