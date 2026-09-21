@@ -743,7 +743,7 @@ section {
   border-radius: var(--radius);
   padding: 40px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .platform-card::before {
@@ -804,7 +804,7 @@ section {
 .platform-downloads {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 12px;
   margin-top: 28px;
 }
 
@@ -812,7 +812,7 @@ section {
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: flex-start;
-  gap: 18px;
+  gap: 12px;
 }
 
 .platform-downloads .download-cta {
@@ -832,17 +832,73 @@ section {
 }
 
 .download-action {
-  display: flex;
-  flex-direction: row;
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  gap: 16px;
+  z-index: 1;
+}
+
+.download-action:hover,
+.download-action:focus-within,
+.download-action.is-qr-open {
+  z-index: 5;
 }
 
 .download-qr {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  padding: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 20;
+  white-space: nowrap;
+}
+
+.download-qr::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 0;
+  width: 16px;
+  height: 100%;
+}
+
+.download-action:hover .download-qr,
+.download-action:focus-within .download-qr,
+.download-action.is-qr-open .download-qr {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(0);
+}
+
+.platform-cards-wide .platform-card:nth-child(3n) .download-qr {
+  left: auto;
+  right: calc(100% + 12px);
+  transform: translateY(-50%) translateX(-6px);
+}
+
+.platform-cards-wide .platform-card:nth-child(3n) .download-qr::before {
+  left: 100%;
+  right: auto;
+}
+
+.platform-cards-wide .platform-card:nth-child(3n) .download-action:hover .download-qr,
+.platform-cards-wide .platform-card:nth-child(3n) .download-action:focus-within .download-qr,
+.platform-cards-wide .platform-card:nth-child(3n) .download-action.is-qr-open .download-qr {
+  transform: translateY(-50%) translateX(0);
 }
 
 .download-qr canvas,
@@ -852,7 +908,6 @@ section {
   padding: 8px;
   background: #fff;
   border-radius: var(--radius-sm);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .download-qr span {
