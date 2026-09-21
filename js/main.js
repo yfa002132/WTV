@@ -187,13 +187,15 @@
     if (!fullUrl) return "";
     return `
       <div class="download-qr">
-        <canvas
-          class="download-qr-canvas"
-          data-qr-url="${escapeHtml(fullUrl)}"
-          width="120"
-          height="120"
-          aria-label="${escapeHtml(label)}"
-        ></canvas>
+        <div class="download-qr-code">
+          <canvas
+            class="download-qr-canvas"
+            data-qr-url="${escapeHtml(fullUrl)}"
+            width="120"
+            height="120"
+            aria-label="${escapeHtml(label)}"
+          ></canvas>
+        </div>
         <span>${escapeHtml(label)}</span>
       </div>`;
   }
