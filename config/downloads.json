@@ -60,7 +60,7 @@
       "versionName": "1.0.6",
       "downloads": [
         {
-          "name": "Apple Silicon",
+          "name": "ARM",
           "file": "mac-arm64",
           "simple": true
         },
