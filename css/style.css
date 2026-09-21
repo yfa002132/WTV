@@ -750,11 +750,11 @@ section {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  left: var(--radius);
+  right: var(--radius);
   height: 3px;
   background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
-  border-radius: var(--radius) var(--radius) 0 0;
+  border-radius: 0;
 }
 
 .platform-card.tv::before {
