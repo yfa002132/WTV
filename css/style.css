@@ -821,11 +821,6 @@ section {
   font-size: 0.95rem;
 }
 
-.platform-card[data-platform="mac"] .download-cta {
-  min-width: 168px;
-  justify-content: center;
-}
-
 .platform-downloads .download-error {
   margin: 0;
   font-size: 0.9rem;
