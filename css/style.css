@@ -749,12 +749,24 @@ section {
 .platform-card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: var(--radius);
-  right: var(--radius);
-  height: 3px;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: calc(var(--radius) + 3px);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 3px 3px 0;
+  box-sizing: border-box;
   background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
-  border-radius: 0;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .platform-card.tv::before {
