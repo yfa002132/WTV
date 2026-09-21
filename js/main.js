@@ -183,6 +183,21 @@
       .replace(/"/g, "&quot;");
   }
 
+  function renderDownloadQr(fullUrl, label) {
+    if (!fullUrl) return "";
+    return `
+      <div class="download-qr">
+        <canvas
+          class="download-qr-canvas"
+          data-qr-url="${escapeHtml(fullUrl)}"
+          width="120"
+          height="120"
+          aria-label="${escapeHtml(label)}"
+        ></canvas>
+        <span>${escapeHtml(label)}</span>
+      </div>`;
+  }
+
   function renderDownloadBtn(item, baseUrl, files) {
     const url = item.file ? files[item.file] || item.url : item.url;
     const fullUrl = url && url.startsWith("http") ? url : baseUrl + (url || "");
@@ -190,26 +205,69 @@
     const isExternal = !!item.external;
     const downloadAttr = isApk && !isExternal ? " download" : "";
     const externalAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : "";
+    const label = item.name || (isExternal ? "打开安装页" : "立即下载");
+    const qrLabel = isExternal ? "扫码打开" : "扫码下载";
     const icon = isExternal
       ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'
       : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
 
     if (item.simple || (!item.desc && !item.size)) {
       return `
-      <a class="btn btn-primary download-cta" href="${escapeHtml(fullUrl)}"${downloadAttr}${externalAttr}>
-        ${icon}
-        ${escapeHtml(item.name || (isExternal ? "打开安装页" : "立即下载"))}
-      </a>`;
+      <div class="download-action">
+        <a class="btn btn-primary download-cta" href="${escapeHtml(fullUrl)}"${downloadAttr}${externalAttr}>
+          ${icon}
+          ${escapeHtml(label)}
+        </a>
+        ${renderDownloadQr(fullUrl, qrLabel)}
+      </div>`;
     }
 
     return `
-      <a class="download-btn" href="${escapeHtml(fullUrl)}"${downloadAttr}${externalAttr}>
-        <div class="info">
-          <strong>${escapeHtml(item.name)}</strong>
-          <span>${escapeHtml(item.desc)}</span>
-        </div>
-        <span class="size">${escapeHtml(item.size || "")}</span>
-      </a>`;
+      <div class="download-action">
+        <a class="download-btn" href="${escapeHtml(fullUrl)}"${downloadAttr}${externalAttr}>
+          <div class="info">
+            <strong>${escapeHtml(item.name)}</strong>
+            <span>${escapeHtml(item.desc)}</span>
+          </div>
+          <span class="size">${escapeHtml(item.size || "")}</span>
+        </a>
+        ${renderDownloadQr(fullUrl, qrLabel)}
+      </div>`;
+  }
+
+  async function renderQrCanvases() {
+    const canvases = document.querySelectorAll(".download-qr-canvas[data-qr-url]");
+    if (!canvases.length) return;
+
+    if (typeof QRCode !== "undefined") {
+      await Promise.all(
+        Array.from(canvases).map((canvas) =>
+          QRCode.toCanvas(canvas, canvas.dataset.qrUrl, {
+            width: 120,
+            margin: 1,
+            color: {
+              dark: "#0e1524",
+              light: "#ffffff",
+            },
+          }).catch((err) => {
+            console.error("二维码生成失败:", err);
+          })
+        )
+      );
+      return;
+    }
+
+    canvases.forEach((canvas) => {
+      const img = document.createElement("img");
+      img.width = 120;
+      img.height = 120;
+      img.alt = canvas.getAttribute("aria-label") || "扫码下载";
+      img.loading = "lazy";
+      img.src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=140x140&margin=8&color=0e1524&bgcolor=ffffff&data=" +
+        encodeURIComponent(canvas.dataset.qrUrl);
+      canvas.replaceWith(img);
+    });
   }
 
   async function loadDownloadConfig() {
@@ -246,6 +304,8 @@
           .map((item) => renderDownloadBtn(item, baseUrl, files))
           .join("");
       });
+
+      await renderQrCanvases();
     } catch (err) {
       console.error("加载下载配置失败:", err);
       if (heroVersion) heroVersion.textContent = "v—";
