@@ -817,8 +817,11 @@ section {
 
 .platform-downloads .download-cta {
   align-self: auto;
+  justify-content: center;
+  min-width: 148px;
   padding: 12px 22px;
   font-size: 0.95rem;
+  box-sizing: border-box;
 }
 
 .platform-downloads .download-error {
