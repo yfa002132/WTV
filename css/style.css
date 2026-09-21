@@ -754,6 +754,7 @@ section {
   right: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .platform-card.tv::before {
