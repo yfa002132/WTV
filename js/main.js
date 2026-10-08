@@ -200,9 +200,15 @@
       </div>`;
   }
 
-  function renderDownloadBtn(item, baseUrl, files) {
+  function resolveDownloadUrl(url, proxyPrefix, baseUrl) {
+    if (!url) return "";
+    if (/^https?:\/\//i.test(url)) return url;
+    return `${proxyPrefix || ""}${baseUrl || ""}${url}`;
+  }
+
+  function renderDownloadBtn(item, proxyPrefix, baseUrl, files) {
     const url = item.file ? files[item.file] || item.url : item.url;
-    const fullUrl = url && url.startsWith("http") ? url : baseUrl + (url || "");
+    const fullUrl = resolveDownloadUrl(url, proxyPrefix, baseUrl);
     const isApk = /\.apk(\?|$)/i.test(fullUrl);
     const isExternal = !!item.external;
     const downloadAttr = isApk && !isExternal ? " download" : "";
@@ -280,7 +286,7 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const config = await res.json();
 
-      const { version, platforms = [], groups, baseUrl = "", files = {} } = config;
+      const { version, platforms = [], groups, proxyPrefix = "", baseUrl = "", files = {} } = config;
 
       // 兼容旧 groups 结构
       const platformList = platforms.length
@@ -303,7 +309,7 @@
         const slot = card.querySelector(".platform-downloads");
         if (!slot) return;
         slot.innerHTML = (platform.downloads || [])
-          .map((item) => renderDownloadBtn(item, baseUrl, files))
+          .map((item) => renderDownloadBtn(item, proxyPrefix, baseUrl, files))
           .join("");
       });
 
