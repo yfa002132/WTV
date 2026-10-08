@@ -200,15 +200,15 @@
       </div>`;
   }
 
-  function resolveDownloadUrl(url, proxyPrefix, baseUrl) {
-    if (!url) return "";
-    if (/^https?:\/\//i.test(url)) return url;
-    return `${proxyPrefix || ""}${baseUrl || ""}${url}`;
+  function resolveDownloadUrl(url, baseUrl, proxyPrefix, external) {
+    const origin = url && url.startsWith("http") ? url : baseUrl + (url || "");
+    if (external || !proxyPrefix || origin.startsWith(proxyPrefix)) return origin;
+    return proxyPrefix + origin;
   }
 
-  function renderDownloadBtn(item, proxyPrefix, baseUrl, files) {
+  function renderDownloadBtn(item, baseUrl, files, proxyPrefix) {
     const url = item.file ? files[item.file] || item.url : item.url;
-    const fullUrl = resolveDownloadUrl(url, proxyPrefix, baseUrl);
+    const fullUrl = resolveDownloadUrl(url, baseUrl, proxyPrefix, item.external);
     const isApk = /\.apk(\?|$)/i.test(fullUrl);
     const isExternal = !!item.external;
     const downloadAttr = isApk && !isExternal ? " download" : "";
@@ -286,7 +286,7 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const config = await res.json();
 
-      const { version, platforms = [], groups, proxyPrefix = "", baseUrl = "", files = {} } = config;
+      const { version, platforms = [], groups, baseUrl = "", files = {}, proxyPrefix = "" } = config;
 
       // 兼容旧 groups 结构
       const platformList = platforms.length
@@ -309,7 +309,7 @@
         const slot = card.querySelector(".platform-downloads");
         if (!slot) return;
         slot.innerHTML = (platform.downloads || [])
-          .map((item) => renderDownloadBtn(item, proxyPrefix, baseUrl, files))
+          .map((item) => renderDownloadBtn(item, baseUrl, files, proxyPrefix))
           .join("");
       });
 

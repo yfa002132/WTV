@@ -11,14 +11,13 @@
     "minWindows": "7"
   },
   "proxyPrefix": "https://z2.gh-proxy.cn/github/",
-  "baseUrl": "https://github.com/yfa002132/WTV/releases/",
   "files": {
-    "phone-universal": "download/V1.1.2/WTV1.1.2_phone-universal-release.apk",
-    "tv-universal": "download/V1.1.1/WTV1.1.1_tv-universal-release.apk",
-    "mac-arm64": "download/V1.0.6/WTV-1.0.6-arm64.dmg",
-    "mac-x64": "download/V1.0.6/WTV-1.0.6-intel.dmg",
-    "windows-setup": "download/V1.0.6/WTV.Setup.1.0.6.exe",
-    "linux-appimage": "download/V1.0.6/WTV-1.0.6.AppImage",
+    "phone-universal": "https://github.com/yfa002132/WTV/releases/download/V1.1.2/WTV1.1.2_phone-universal-release.apk",
+    "tv-universal": "https://github.com/yfa002132/WTV/releases/download/V1.1.1/WTV1.1.1_tv-universal-release.apk",
+    "mac-arm64": "https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6-arm64.dmg",
+    "mac-x64": "https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6-intel.dmg",
+    "windows-setup": "https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV.Setup.1.0.6.exe",
+    "linux-appimage": "https://github.com/yfa002132/WTV/releases/download/V1.0.6/WTV-1.0.6.AppImage",
     "ios-pwa": "https://wtv-ios.netlify.app/"
   },
   "platforms": [
