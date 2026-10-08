@@ -200,6 +200,24 @@
       </div>`;
   }
 
+  function applyAssetProxy(proxyPrefix) {
+    const prefixUrl = (origin) => {
+      if (!origin) return "";
+      if (!proxyPrefix || origin.startsWith(proxyPrefix)) return origin;
+      return proxyPrefix + origin;
+    };
+
+    document.querySelectorAll("img[data-src]").forEach((img) => {
+      if (img.getAttribute("src")) return;
+      img.src = prefixUrl(img.getAttribute("data-src"));
+    });
+
+    document.querySelectorAll("link[rel='icon'][data-href]").forEach((link) => {
+      if (link.getAttribute("href")) return;
+      link.href = prefixUrl(link.getAttribute("data-href"));
+    });
+  }
+
   function resolveDownloadUrl(url, baseUrl, proxyPrefix, external) {
     const origin = url && url.startsWith("http") ? url : baseUrl + (url || "");
     if (external || !proxyPrefix || origin.startsWith(proxyPrefix)) return origin;
@@ -287,6 +305,7 @@
       const config = await res.json();
 
       const { version, platforms = [], groups, baseUrl = "", files = {}, proxyPrefix = "" } = config;
+      applyAssetProxy(proxyPrefix);
 
       // 兼容旧 groups 结构
       const platformList = platforms.length
@@ -316,6 +335,7 @@
       await renderQrCanvases();
     } catch (err) {
       console.error("加载下载配置失败:", err);
+      applyAssetProxy("");
       if (heroVersion) heroVersion.textContent = "v—";
       document.querySelectorAll(".platform-downloads").forEach((slot) => {
         slot.innerHTML = '<p class="download-error">下载配置加载失败</p>';
