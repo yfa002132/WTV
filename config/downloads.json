@@ -18,7 +18,8 @@
     "mac-x64": "https://github.com/yfa002132/WTV/releases/download/V1.1.6/WTV-1.1.6.dmg",
     "windows-setup": "https://github.com/yfa002132/WTV/releases/download/V1.1.6/WTV.Setup.1.1.6.exe",
     "linux-appimage": "https://github.com/yfa002132/WTV/releases/download/V1.1.6/WTV-1.1.6.AppImage",
-    "ios-pwa": "https://wtv-ios.netlify.app/"
+    "ios-pwa": "https://wtv-ios.netlify.app/",
+    "web": "https://wtv-ios.netlify.app/"
   },
   "platforms": [
     {
@@ -39,6 +40,18 @@
         {
           "name": "打开安装页",
           "file": "ios-pwa",
+          "simple": true,
+          "external": true
+        }
+      ]
+    },
+    {
+      "id": "web",
+      "versionName": "1.0.6",
+      "downloads": [
+        {
+          "name": "立即体验",
+          "file": "web",
           "simple": true,
           "external": true
         }
