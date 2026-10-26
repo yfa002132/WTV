@@ -230,6 +230,7 @@
     const isApk = /\.apk(\?|$)/i.test(fullUrl);
     const isExternal = !!item.external;
     const downloadAttr = isApk && !isExternal ? " download" : "";
+    const actionAttr = isExternal ? ' data-action="open"' : ' data-action="download"';
     const externalAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : "";
     const label = item.name || (isExternal ? "打开安装页" : "立即下载");
     const qrLabel = isExternal ? "扫码打开" : "扫码下载";
@@ -240,7 +241,7 @@
     if (item.simple || (!item.desc && !item.size)) {
       return `
       <div class="download-action">
-        <a class="btn btn-primary download-cta" href="${escapeHtml(fullUrl)}"${downloadAttr}${externalAttr}>
+        <a class="btn btn-primary download-cta" href="${escapeHtml(fullUrl)}"${downloadAttr}${actionAttr}${externalAttr}>
           ${icon}
           ${escapeHtml(label)}
         </a>
@@ -250,7 +251,7 @@
 
     return `
       <div class="download-action">
-        <a class="download-btn" href="${escapeHtml(fullUrl)}"${downloadAttr}${externalAttr}>
+        <a class="download-btn" href="${escapeHtml(fullUrl)}"${downloadAttr}${actionAttr}${externalAttr}>
           <div class="info">
             <strong>${escapeHtml(item.name)}</strong>
             <span>${escapeHtml(item.desc)}</span>
@@ -293,6 +294,60 @@
         "https://api.qrserver.com/v1/create-qr-code/?size=140x140&margin=8&color=0e1524&bgcolor=ffffff&data=" +
         encodeURIComponent(canvas.dataset.qrUrl);
       canvas.replaceWith(img);
+    });
+  }
+
+  const CLICK_LOCK_MS = 2800;
+  let toastTimer = 0;
+
+  function showToast(message) {
+    let toast = document.querySelector(".toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "toast";
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), CLICK_LOCK_MS);
+  }
+
+  function lockActionLink(link) {
+    link.dataset.locked = "true";
+    link.setAttribute("aria-disabled", "true");
+    link.classList.add("is-busy");
+    setTimeout(() => {
+      link.dataset.locked = "false";
+      link.removeAttribute("aria-disabled");
+      link.classList.remove("is-busy");
+    }, CLICK_LOCK_MS);
+  }
+
+  function initDownloadActions() {
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest(".platform-downloads a[data-action]");
+      if (!link) return;
+
+      if (link.dataset.locked === "true") {
+        event.preventDefault();
+        return;
+      }
+
+      if (link.dataset.action === "open") {
+        const href = link.getAttribute("href");
+        if (!href) return;
+        event.preventDefault();
+        lockActionLink(link);
+        window.open(link.href, "_blank", "noopener,noreferrer");
+        return;
+      }
+
+      if (!link.getAttribute("href")) return;
+      lockActionLink(link);
+      showToast("开始下载");
     });
   }
 
@@ -344,6 +399,7 @@
   }
 
   observeElements(".feature-card, .platform-card, .faq-item");
+  initDownloadActions();
   loadDownloadConfig();
   initMockupCarousel();
   initDeviceSwitcher();
