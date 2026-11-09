@@ -1,0 +1,22 @@
+---
+description: 本项目所有 git commit message 必须使用中文
+alwaysApply: true
+---
+
+# Commit Message 使用中文
+
+在本项目创建或修改 git commit 时：
+
+- **必须**使用简体中文撰写 commit message
+- 标题用一句话说明「为什么改」，不要只罗列文件名
+- 可沿用类型前缀（如 `feat:` / `fix:`），但说明正文必须是中文
+- 不要使用纯英文 commit message
+
+## 示例
+
+```text
+✅ feat: 增加下载开始 toast，避免用户误以为点击无效
+✅ fix: 防止下载按钮短时间内重复触发多次下载
+❌ feat: add download start toast
+❌ fix: prevent duplicate download clicks
+```
