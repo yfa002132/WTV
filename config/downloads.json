@@ -1,7 +1,7 @@
 {
   "version": {
-    "name": "1.1.6",
-    "code": 116,
+    "name": "1.6.0",
+    "code": 160,
     "desktopName": "1.6.0",
     "desktopCode": 160,
     "iosName": "1.0.6",
@@ -12,8 +12,8 @@
   },
   "proxyPrefix": "https://gh-proxy.org/",
   "files": {
-    "phone-universal": "https://github.com/yfa002132/WTV/releases/download/V1.6.0/WTV1.1.6_phone-universal-release.apk",
-    "tv-universal": "https://github.com/yfa002132/WTV/releases/download/V1.6.0/WTV1.1.6_tv-universal-release.apk",
+    "phone-universal": "https://github.com/yfa002132/WTV/releases/download/V1.6.0/WTV1.6.0_phone-universal-release.apk",
+    "tv-universal": "https://github.com/yfa002132/WTV/releases/download/V1.6.0/WTV1.6.0_tv-universal-release.apk",
     "mac-arm64": "https://github.com/yfa002132/WTV/releases/download/V1.6.0/WTV-1.6.0-arm64.dmg",
     "mac-x64": "https://github.com/yfa002132/WTV/releases/download/V1.6.0/WTV-1.6.0.dmg",
     "windows-setup": "https://github.com/yfa002132/WTV/releases/download/V1.6.0/WTV.Setup.1.6.0.exe",
@@ -24,7 +24,7 @@
   "platforms": [
     {
       "id": "phone",
-      "versionName": "1.1.6",
+      "versionName": "1.6.0",
       "downloads": [
         {
           "name": "立即下载",
@@ -59,7 +59,7 @@
     },
     {
       "id": "tv",
-      "versionName": "1.1.6",
+      "versionName": "1.6.0",
       "downloads": [
         {
           "name": "立即下载",
